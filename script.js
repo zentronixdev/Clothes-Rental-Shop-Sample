@@ -15,4 +15,24 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  document.querySelectorAll('.select-product').forEach((button) => {
+    button.addEventListener('click', () => {
+      const card = button.closest('.product-card');
+      const selectedInput = document.getElementById('selected-outfit');
+      const productName = card?.dataset.product || 'Custom rental selection';
+
+      document.querySelectorAll('.product-card').forEach((item) => item.classList.remove('selected'));
+      card?.classList.add('selected');
+
+      if (selectedInput) {
+        selectedInput.value = productName;
+      }
+
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
 });
